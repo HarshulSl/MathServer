@@ -39,7 +39,7 @@ Publish the website in the given URL.
 
     <title>Power Calculation for Lamp Filament</title>
     <style>
-        /* General styles */
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -61,7 +61,6 @@ Publish the website in the given URL.
             color: #333;
         }
 
-        /* Container for input fields */
         .container {
             background-color: #fff;
             padding: 20px;
