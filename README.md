@@ -1,4 +1,4 @@
-w23# Ex.05 Design a Website for Server Side Processing
+# Ex.05 Design a Website for Server Side Processing
 ## Date:5/12/24
 
 ## AIM:
@@ -33,13 +33,11 @@ Publish the website in the given URL.
 
 ## PROGRAM :
 ```
-
+<!DOCTYPE html>
 <html>
 <head>
-
     <title>Power Calculation for Lamp Filament</title>
     <style>
-        
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -115,32 +113,30 @@ Publish the website in the given URL.
 </header>
 
 <div class="container">
-    <label for="intensity">Enter Intensity (I) in Amperes:</label>
-    <input type="number" id="intensity" placeholder="Intensity (I)" required>
+    <form method="POST">
+        <label for="intensity">Enter Intensity (I) in Amperes:</label>
+        <input type="number" id="intensity" name="intensity" step="any" placeholder="Intensity (I)" required>
 
-    <label for="resistance">Enter Resistance (R) in Ohms:</label>
-    <input type="number" id="resistance" placeholder="Resistance (R)" required>
+        <label for="resistance">Enter Resistance (R) in Ohms:</label>
+        <input type="number" id="resistance" name="resistance" step="any" placeholder="Resistance (R)" required>
 
-    <button onclick="calculatePower()">Calculate Power (P)</button>
+        <button type="submit">Calculate Power (P)</button>
+    </form>
 
-    <div class="result" id="result"></div>
+    {% if power is not none %}
+    <div class="result">
+        {% if power|float %}
+            Power (P) = {{ power }} Watts
+        {% else %}
+            {{ power }}
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
-
-<script>
-    function calculatePower() {
-        const intensity = parseFloat(document.getElementById("intensity").value);
-        const resistance = parseFloat(document.getElementById("resistance").value);
-
-        // Calculate power using the formula P = I^2 * R
-        const power = Math.pow(intensity, 2) * resistance;
-
-        // Display the result
-        document.getElementById("result").innerText = `Power (P) = ${power.toFixed(2)} Watts`;
-    }
-</script>
 
 </body>
 </html>
+
 
 ```
 
