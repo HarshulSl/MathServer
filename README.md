@@ -33,107 +33,81 @@ Publish the website in the given URL.
 
 ## PROGRAM :
 ```
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Power Calculation for Lamp Filament</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Calculator</title>
     <style>
         body {
+            background-color: #e0f7fa;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
-
-        header {
+        .container {
+            width: 400px;
+            margin: 50px auto;
             text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #00796b;
             margin-bottom: 20px;
         }
-
-        h1 {
-            font-size: 2em;
-            color: #333;
-        }
-
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
         label {
-            font-size: 1.1em;
-            margin-bottom: 8px;
             display: block;
-            color: #555;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 8px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1em;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1.1em;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .result {
-            margin-top: 15px;
-            font-size: 1.2em;
-            color: #333;
+            text-align: left;
+            margin-bottom: 5px;
             font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #d32f2f;
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Power Calculator</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="intensity">Intensity (I in Amps):</label>
+            <input type="text" name="intensity" id="intensity" required>
 
-<header>
-    <h1>Calculate Power of Lamp Filament</h1>
-</header>
+            <label for="resistance">Resistance (R in Ohms):</label>
+            <input type="text" name="resistance" id="resistance" required>
 
-<div class="container">
-    <form method="POST">
-        <label for="intensity">Enter Intensity (I) in Amperes:</label>
-        <input type="number" id="intensity" name="intensity" step="any" placeholder="Intensity (I)" required>
-
-        <label for="resistance">Enter Resistance (R) in Ohms:</label>
-        <input type="number" id="resistance" name="resistance" step="any" placeholder="Resistance (R)" required>
-
-        <button type="submit">Calculate Power (P)</button>
-    </form>
-
-    {% if power is not none %}
-    <div class="result">
-        {% if power|float %}
-            Power (P) = {{ power }} Watts
-        {% else %}
-            {{ power }}
+            <button type="submit">Calculate</button>
+        </form>
+        {% if power is not None %}
+            <h2>Calculated Power: {{ power }} Watts</h2>
         {% endif %}
     </div>
-    {% endif %}
-</div>
-
 </body>
 </html>
 
@@ -182,11 +156,11 @@ urlpatterns = [
 
 
 ## SERVER SIDE PROCESSING:
+![Screenshot (27)](https://github.com/user-attachments/assets/3057eb95-1d66-48b9-ab60-13e9b2ba7ac5)
 
-![alt text](image-1.png)
 
 ## HOMEPAGE:
+![Screenshot (28)](https://github.com/user-attachments/assets/12b5f2ee-b2fd-41ad-9fab-036ec0671589)
 
-![alt text](image-2.png)
 ## RESULT:
 The program for performing server side processing is completed successfully.
