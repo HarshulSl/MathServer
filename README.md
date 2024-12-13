@@ -137,6 +137,46 @@ Publish the website in the given URL.
 </body>
 </html>
 
+views.py
+
+from Django.shortcuts import render
+
+def power_calculator(request):
+    power = None  
+
+    if request.method == 'POST':
+        
+        intensity = request.POST.get('intensity')
+        resistance = request.POST.get('resistance')
+
+        
+        if intensity and resistance:
+            try:
+            
+                I = float(intensity)
+                R = float(resistance)
+                power = I**2 * R
+                print('intensity=',I)
+                print('resistance=',R)
+                print('power=',power)  
+
+            except ValueError:
+                power = "Invalid input. Please enter numerical values."
+
+    
+    return render(request, 'mathapp/math.html', {'power': power})
+
+urls.py
+
+from Django.contrib import admin
+from Django.urls import path
+from mathapp import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.power_calculator, name='power_calculator'), 
+]
+
 
 ```
 
